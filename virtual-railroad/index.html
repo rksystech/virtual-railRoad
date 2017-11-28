@@ -4,9 +4,263 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>virtual-railroad</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+
+
+    <!---Scripts-->
+    <script src="src/assets/js/jquery-3.2.1.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false&language=en"></script>
+
+
+    <style>
+		body {
+			font-family: 'Open Sans', sans-serif;
+			font-size: 16px;
+			overflow-x: hidden;
+			color: #222;
+		}
+		ul, li {
+			margin:0px;
+			padding:0px;
+			list-style:none;
+		}
+		a, a:hover, a:focus {
+			text-decoration: none;
+		}
+		p {
+		    margin: 1em 0px;
+		    font-size: 16px;
+		}
+		h1 {
+    		font-size: 2em;
+    		font-weight: 600;
+    		letter-spacing: -.9px;
+		}
+		label {
+		    display: block;
+		    margin-bottom: 0px;
+		    font-weight: 400;
+		    font-size: 16px;
+		}
+		ol, li {
+			margin:0px;
+			padding: 0px;
+			line-height: 0px;
+		}
+		.pad-0 {
+			padding:0px !important;
+		}
+		.pad-left-0 {
+			padding-left:0px;
+		}
+		.pad-right-0 {
+			padding-right:0px;
+		}
+		.spacer {
+			display:block;
+			width:100%;
+			clear: both;
+		}
+		.spacer10 {
+			height: 10px;
+		}
+		.spacer20 {
+			height: 20px;
+		}
+		.spacer30 {
+			height: 30px;
+		}
+		.spacer40 {
+			height: 40px;
+		}
+		.main-btn {
+		    padding: 3px 10px 3px 10px;
+		    color: white;
+		    background: #4475b7;
+		    margin-top: 5px;
+		    border-radius: 0px;
+		}
+		.mtop-0 {
+			margin-top: 0px;
+		}
+		.modal .close {
+		    position: absolute;
+		    right: 3px;
+    		top: 1px;
+		    border: 0px;
+		    background: transparent;
+		    font-weight: 700;
+		    z-index: 999;
+		    font-size: 12px;
+		    opacity: 1;
+		    text-shadow: none;
+		}
+
+		.modal .close span {
+		    width: 15px;
+		    height: 15px;
+		    display: inline-block;
+		    background: #000;
+		    color: #fff;
+		    border-radius: 50%;
+		    font-size: 10px;
+		    vertical-align: middle;
+		    padding-top: 2px;
+		}
+
+		input[type="submit"] {
+		  color: #fff !important;
+		}
+
+		@media (min-width: 1025px) {
+			.container {
+			    width: 1026px;
+			}
+		}
+
+		/**----Header----**/
+		.logo {
+		    display: inline-block;
+		    width: 100%;
+		    max-width: 451px;
+		    vertical-align: middle;
+		}
+		.logo img {
+			width: 100%;
+		}
+		.head-top {
+			margin-top: 67px;
+		}
+		.head-top li {
+			display:inline-block;
+			margin: 10px;
+		}
+		.social-top li a {
+		    height: 30px;
+		    width: 30px;
+		    display: inline-block;
+		}
+		.sprite-fb-active {
+		    background: url(src/assets/sprite.png) no-repeat top left;
+		    background-position: -40px 0;
+		}
+		.sprite-gp-active {
+		    background: url(src/assets/sprite.png) no-repeat top left;
+		    background-position: -120px 0;
+		}
+		.sprite-tw-active {
+		    background: url(src/assets/sprite.png) no-repeat top left;
+		    background-position: -280px 0;
+		}
+		.sprite-fb-active:hover {
+		    background: url(src/assets/sprite.png) no-repeat top left;
+		    background-position: 0 0;
+		}
+		.sprite-gp-active:hover {
+		    background: url(src/assets/sprite.png) no-repeat top left;
+		    background-position: -80px 0;
+		}
+		.sprite-tw-active:hover {
+		    background: url(src/assets/sprite.png) no-repeat top left;
+		    background-position: -240px 0;
+		}
+		header label {
+		    color: #666;
+		    margin: 0;
+		    display: block;
+		    font-weight: 400;
+		}
+		/**----Header----**/
+		/**----Footer-----**/
+		footer {
+		    background: #4475b7;
+		    border-top: 20px solid #064591;
+		    padding: 20px 0;
+		}
+		footer li {
+			display: inline-block;
+			margin: 0px 10px;
+		}
+		footer li a {
+			color: #fff;
+		}
+		/**-----Responsive---**/
+		@media (max-width: 1024px) {
+			.responsive-head {
+			    width: 100% !important;
+			}
+			.head-top {
+			    margin-top: 10px;
+			}
+		}
+	</style>
   </head>
   <body>
+
+  	<!--Header-->
+            <header>
+              <div class="container">
+                <div class="row">
+		          <div class="col-md-3 responsive-head text-center">
+		            <ul class="social-top head-top">
+		              <li><a href="#" class="sprite-fb-active"></a></li>
+		              <li><a href="#" class="sprite-gp-active"></a></li>
+		              <li><a href="#" class="sprite-tw-active"></a></li>
+		            </ul>
+		          </div>
+		          <div class="col-md-6 responsive-head text-center">
+		            <a class="logo" href="index.php"><img src="src/assets/logo.png" alt="Logo" /></a>
+		          </div>
+		          <div class="col-md-3 responsive-head pad-left-0 text-center">
+		            <ul class="menu-top head-top">
+		              <li><a href="user-sign-up.php">Sign Up</a></li>
+		              <li><a href="">Login</a></li>
+		              <li><a class="view-intro" href="#">View Intro</a></li>
+		            </ul>
+		          </div>
+
+		          <div class="clearfix"></div>
+
+		          <div class="col-md-12 text-center inner-pages">
+			       <!-- <label>
+			          Click the bulbs to see who's helping free slaves and where they're helping. Click <a href="user-signup.php" target="_blank">here</a> to be part of the Virtual Railroad.
+			        </label>    -->
+		          </div>
+		         </div>
+		      </div>    
+            </header>
+            <!--Header-->
+
+
     <div id="app"></div>
     <!-- built files will be auto injected -->
+
+
+     <!---Footer-->
+            <footer>
+            	<div class="container">
+            		<div class="row">
+            			<div class="col-md-12">
+            				<ul>
+								<li><a href="index.php">Map</a></li>
+								<li><a href="users.php">Users</a></li>
+								<li><a href="user-sign-up.php">New User</a></li>
+								<li><a href="nonprofits.php">Nonprofits</a></li>
+								<li><a href="nonprofit-sign-up.php">New nonprofit</a></li>
+								<li><a href="blog.php">Blog</a></li>
+								<li><a href="discussions.php">Discussions</a></li>
+								<li><a href="about.php">About Us</a></li>
+								<li><a href="contact.php">Contact Us</a></li>
+								<li><a href="http://www.dailysource.org/donation">Donate</a></li>
+							</ul>
+            			</div>
+            		</div>
+            	</div>
+            </footer>
+
+    <!---Scripts-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="src/assets/js/railroad-map.js"></script>
   </body>
 </html>
